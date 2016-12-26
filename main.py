@@ -20,5 +20,5 @@ def handle_my_custom_event(json):
 if LOCAL and __name__ == "__main__":
     socketio.run(app, debug=False)
 
-# To deploy:
-# gunicorn main:socketio
+# To deploy: set LOCAL=False, then:
+# gunicorn --worker-class eventlet -w 1 main:app
