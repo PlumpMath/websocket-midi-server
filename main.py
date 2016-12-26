@@ -12,10 +12,10 @@ CORS(app)
 def hello_world():
     return 'Hello, World!'
 
-@socketio.on('my event')
+@socketio.on('to-server')
 def handle_my_custom_event(json):
     print('received json: ' + str(json))
-    emit('to client', json, broadcast=True)
+    emit('to-client', json, broadcast=True)
 
 if LOCAL and __name__ == "__main__":
     socketio.run(app, debug=False)

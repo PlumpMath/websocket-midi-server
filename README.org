@@ -1,13 +1,9 @@
 -*- mode: org; mode: visual-line; -*-
 #+STARTUP: indent logdone lognoteclock-out
 
-* websocket-midi-cljs
+* websocket-midi-server
 
-MIDI note echoing between browsers using WebSockets. Written in ClojureScript
-
-** Client
-
- Figwheel project, assumes MIDI support in browser (such as Chrome).
+MIDI note echoing between browsers using WebSockets. Server written in Python
 
 ** Server
 
@@ -40,10 +36,11 @@ MIDI note echoing between browsers using WebSockets. Written in ClojureScript
     git push heroku master
   #+END_SRC
 
-- Looking through the [[https://devcenter.heroku.com/articles/python-gunicorn][Gunicorn]] guide. Need to add Gunicorn to deps:
+- Looking through the [[https://devcenter.heroku.com/articles/python-gunicorn][Gunicorn]] guide. Need to add Gunicorn to deps, and Eventlet:
 
   #+BEGIN_SRC shell-script
     pip install gunicorn
+    pip install eventlet
   #+END_SRC
 
 - Dump out to ~requirements.txt~:
