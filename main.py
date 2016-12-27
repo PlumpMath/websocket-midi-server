@@ -9,8 +9,20 @@ socketio = SocketIO(app)
 CORS(app)
 
 @app.route('/')
-def hello_world():
-    return 'Hello, World!'
+def index():
+    return render_template('index.html')
+
+@app.route('/<path:path>')
+def static_file(path):
+    return app.send_static_file(path)
+
+@app.route('/main_site')
+def main_site():
+    return render_template('content.html', kind='MAIN_SITE')
+
+@app.route('/satellite')
+def satellite():
+    return render_template('content.html', kind='SATELLITE')
 
 @socketio.on('to_server')
 def handle_my_custom_event(json):
