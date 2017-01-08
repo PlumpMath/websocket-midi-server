@@ -24,6 +24,10 @@ def main_site():
 def satellite():
     return render_template('content.html', kind='SATELLITE')
 
+@app.route('/list')
+def do_list():
+    return render_template('content.html', kind='LIST')
+
 @socketio.on('to_server')
 def handle_my_custom_event(json):
     print('received json: ' + str(json))
