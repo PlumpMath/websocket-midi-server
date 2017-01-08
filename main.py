@@ -2,7 +2,7 @@ from flask import Flask, render_template
 from flask_socketio import SocketIO, emit
 from flask_cors import CORS, cross_origin
 
-LOCAL = False
+LOCAL = True
 
 app = Flask(__name__)
 socketio = SocketIO(app)
@@ -34,7 +34,7 @@ def handle_my_custom_event(json):
     emit('to_client', json, broadcast=True)
 
 if LOCAL and __name__ == "__main__":
-    socketio.run(app, debug=False)
+    socketio.run(app, debug=True)
 
 # To deploy: set LOCAL=False, then:
 # gunicorn --worker-class eventlet -w 1 main:app
