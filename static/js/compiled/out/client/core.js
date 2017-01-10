@@ -15,6 +15,12 @@ return new cljs.core.Keyword(null,"content","content",15833224).cljs$core$IFn$_i
 });
 reagent.core.render_component.call(null,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [client.core.hello_world], null),document.getElementById("app"));
 client.core.socket = io.connect.call(null,client.core.HOST);
+client.core.note_name = (function client$core$note_name(pitch){
+var octave = ((pitch / (12)) | (0));
+var note = cljs.core.mod.call(null,pitch,(12));
+var names = new cljs.core.PersistentVector(null, 12, 5, cljs.core.PersistentVector.EMPTY_NODE, ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"], null);
+return [cljs.core.str(names.call(null,note)),cljs.core.str((octave - (2)))].join('');
+});
 client.core.when_MIDI = (function client$core$when_MIDI(f){
 return WebMidi.enable((function (err){
 if(cljs.core.truth_(err)){
@@ -35,21 +41,28 @@ console.log("msg to client",msg);
 var temp__4657__auto__ = msg.midi;
 if(cljs.core.truth_(temp__4657__auto__)){
 var midi_bytes = temp__4657__auto__;
-var temp__4657__auto____$1 = WebMidi.getOutputByName("to Max 1");
-if(cljs.core.truth_(temp__4657__auto____$1)){
-var output = temp__4657__auto____$1;
+var temp__4655__auto__ = WebMidi.getOutputByName("to Max 1");
+if(cljs.core.truth_(temp__4655__auto__)){
+var output = temp__4655__auto__;
 console.log("bytes",midi_bytes);
 
 var status = ((midi_bytes[(0)]) & (240));
 var pitch = (midi_bytes[(1)]);
+var velocity = (midi_bytes[(2)]);
 console.log("status",status,"pitch",pitch);
 
-var G__52850 = status;
-switch (G__52850) {
+var G__54236 = status;
+switch (G__54236) {
 case (144):
+if(cljs.core._EQ_.call(null,velocity,(0))){
+console.log("< note off",pitch);
+
+return output.stopNote(pitch,(1));
+} else {
 console.log("< note on",pitch);
 
 return output.playNote(pitch,(1));
+}
 
 break;
 case (128):
@@ -63,7 +76,7 @@ return console.log("other status");
 
 }
 } else {
-return null;
+return console.log([cljs.core.str("Can't find "),cljs.core.str("to Max 1")].join(''));
 }
 } else {
 return null;
@@ -71,18 +84,18 @@ return null;
 }));
 }));
 });
-client.core.show_latch = (function client$core$show_latch(how){
-return cljs.core.swap_BANG_.call(null,client.core.app_state,cljs.core.assoc_in,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"content","content",15833224),(1)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.row","div.row",133678515),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.col-md-12","div.col-md-12",-1894925992),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"h2","h2",-372662728),(cljs.core.truth_(how)?"ON":"OFF")], null)], null)], null));
+client.core.show_latch = (function client$core$show_latch(how,pitch){
+return cljs.core.swap_BANG_.call(null,client.core.app_state,cljs.core.assoc_in,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"content","content",15833224),(1)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.row","div.row",133678515),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.col-md-12","div.col-md-12",-1894925992),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"h2","h2",-372662728),(cljs.core.truth_(how)?"ON: ":"OFF: "),client.core.note_name.call(null,pitch)], null)], null)], null));
 });
 client.core.note_on_normal = (function client$core$note_on_normal(midi){
 client.core.socket.emit("to_server",({"midi": midi}));
 
-return client.core.show_latch.call(null,true);
+return client.core.show_latch.call(null,true,(midi[(1)]));
 });
 client.core.note_off_normal = (function client$core$note_off_normal(midi){
 client.core.socket.emit("to_server",({"midi": midi}));
 
-return client.core.show_latch.call(null,false);
+return client.core.show_latch.call(null,false,(midi[(1)]));
 });
 client.core.note_on_latch = (function client$core$note_on_latch(midi){
 var status = (midi[(0)]);
@@ -93,7 +106,7 @@ console.log("latch data",cljs.core.clj__GT_js.call(null,new cljs.core.Persistent
 
 client.core.socket.emit("to_server",cljs.core.clj__GT_js.call(null,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"midi","midi",1256960668),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [status,pitch,(cljs.core.truth_(how)?velocity:(0))], null)], null)));
 
-return client.core.show_latch.call(null,how);
+return client.core.show_latch.call(null,how,pitch);
 });
 client.core.note_off_latch = (function client$core$note_off_latch(midi){
 return null;
@@ -105,30 +118,30 @@ client.core.note_off = (cljs.core.truth_(client.core.LATCHING)?client.core.note_
  */
 client.core.SATELLITE = (function client$core$SATELLITE(){
 return client.core.when_MIDI.call(null,(function (){
-var temp__4657__auto__ = WebMidi.getInputByName("LPD8");
-if(cljs.core.truth_(temp__4657__auto__)){
-var keys = temp__4657__auto__;
+var temp__4655__auto__ = WebMidi.getInputByName("from Max 1");
+if(cljs.core.truth_(temp__4655__auto__)){
+var keys = temp__4655__auto__;
 cljs.core.swap_BANG_.call(null,client.core.app_state,cljs.core.assoc,new cljs.core.Keyword(null,"content","content",15833224),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.row","div.row",133678515),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.col-md-12","div.col-md-12",-1894925992),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"h2","h2",-372662728),"OFF"], null)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.row","div.row",133678515),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.col-md-12","div.col-md-12",-1894925992),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"iframe","iframe",884422026),new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"src","src",-1651076051),"http://ipcamlive.com/player/player.php?alias=57c7d74347fa1",new cljs.core.Keyword(null,"width","width",-384071477),"100%",new cljs.core.Keyword(null,"height","height",1025178622),"100%",new cljs.core.Keyword(null,"frameBorder","frameBorder",-1546202685),(0)], null)], null)], null)], null)], null));
 
-client.core.show_latch.call(null,false);
+client.core.show_latch.call(null,false,(0));
 
-keys.addListener("noteon","all",((function (keys,temp__4657__auto__){
-return (function (p1__52852_SHARP_){
-console.log("noteon",p1__52852_SHARP_);
+keys.addListener("noteon","all",((function (keys,temp__4655__auto__){
+return (function (p1__54238_SHARP_){
+console.log("noteon",p1__54238_SHARP_);
 
-return client.core.note_on.call(null,p1__52852_SHARP_.data);
-});})(keys,temp__4657__auto__))
+return client.core.note_on.call(null,p1__54238_SHARP_.data);
+});})(keys,temp__4655__auto__))
 );
 
-return keys.addListener("noteoff","all",((function (keys,temp__4657__auto__){
-return (function (p1__52853_SHARP_){
-console.log("noteoff",p1__52853_SHARP_);
+return keys.addListener("noteoff","all",((function (keys,temp__4655__auto__){
+return (function (p1__54239_SHARP_){
+console.log("noteoff",p1__54239_SHARP_);
 
-return client.core.note_off.call(null,p1__52853_SHARP_.data);
-});})(keys,temp__4657__auto__))
+return client.core.note_off.call(null,p1__54239_SHARP_.data);
+});})(keys,temp__4655__auto__))
 );
 } else {
-return null;
+return cljs.core.swap_BANG_.call(null,client.core.app_state,cljs.core.assoc,new cljs.core.Keyword(null,"content","content",15833224),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.row","div.row",133678515),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.col-md-12","div.col-md-12",-1894925992),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"h2","h2",-372662728),"Cannot find ","from Max 1"], null)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.row","div.row",133678515),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.col-md-12","div.col-md-12",-1894925992),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"iframe","iframe",884422026),new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"src","src",-1651076051),"http://ipcamlive.com/player/player.php?alias=57c7d74347fa1",new cljs.core.Keyword(null,"width","width",-384071477),"100%",new cljs.core.Keyword(null,"height","height",1025178622),"100%",new cljs.core.Keyword(null,"frameBorder","frameBorder",-1546202685),(0)], null)], null)], null)], null)], null));
 }
 }));
 });
@@ -153,4 +166,4 @@ client.core.on_js_reload = (function client$core$on_js_reload(){
 return null;
 });
 
-//# sourceMappingURL=core.js.map?rel=1483866621357
+//# sourceMappingURL=core.js.map?rel=1484082465454
