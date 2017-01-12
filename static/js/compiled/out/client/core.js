@@ -4,7 +4,7 @@ goog.require('cljs.core');
 goog.require('reagent.core');
 goog.require('cljsjs.socket_io');
 cljs.core.enable_console_print_BANG_.call(null);
-client.core.HOST = "https://boiling-shore-13036.herokuapp.com/";
+client.core.HOST = "https://identity-noise.herokuapp.com/";
 client.core.LATCHING = true;
 if(typeof client.core.app_state !== 'undefined'){
 } else {
@@ -51,8 +51,8 @@ var pitch = (midi_bytes[(1)]);
 var velocity = (midi_bytes[(2)]);
 console.log("status",status,"pitch",pitch);
 
-var G__54236 = status;
-switch (G__54236) {
+var G__45516 = status;
+switch (G__45516) {
 case (144):
 if(cljs.core._EQ_.call(null,velocity,(0))){
 console.log("< note off",pitch);
@@ -126,18 +126,18 @@ cljs.core.swap_BANG_.call(null,client.core.app_state,cljs.core.assoc,new cljs.co
 client.core.show_latch.call(null,false,(0));
 
 keys.addListener("noteon","all",((function (keys,temp__4655__auto__){
-return (function (p1__54238_SHARP_){
-console.log("noteon",p1__54238_SHARP_);
+return (function (p1__45518_SHARP_){
+console.log("noteon",p1__45518_SHARP_);
 
-return client.core.note_on.call(null,p1__54238_SHARP_.data);
+return client.core.note_on.call(null,p1__45518_SHARP_.data);
 });})(keys,temp__4655__auto__))
 );
 
 return keys.addListener("noteoff","all",((function (keys,temp__4655__auto__){
-return (function (p1__54239_SHARP_){
-console.log("noteoff",p1__54239_SHARP_);
+return (function (p1__45519_SHARP_){
+console.log("noteoff",p1__45519_SHARP_);
 
-return client.core.note_off.call(null,p1__54239_SHARP_.data);
+return client.core.note_off.call(null,p1__45519_SHARP_.data);
 });})(keys,temp__4655__auto__))
 );
 } else {
@@ -166,4 +166,4 @@ client.core.on_js_reload = (function client$core$on_js_reload(){
 return null;
 });
 
-//# sourceMappingURL=core.js.map?rel=1484082465454
+//# sourceMappingURL=core.js.map?rel=1484211955683

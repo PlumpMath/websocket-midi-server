@@ -4,7 +4,8 @@
 
 (enable-console-print!)
 
-(def HOST "https://boiling-shore-13036.herokuapp.com/")
+;;(def HOST "https://boiling-shore-13036.herokuapp.com/")
+(def HOST "https://identity-noise.herokuapp.com/")
 ;;(def HOST "http://localhost:5000")
 
 (def LATCHING true)                     ; note-on to toggle behaviour...
