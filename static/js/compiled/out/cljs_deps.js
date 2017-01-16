@@ -42,9 +42,11 @@ goog.addDependency("../cljs/reader.js", ['cljs.reader'], ['goog.string', 'cljs.c
 goog.addDependency("../figwheel/client/socket.js", ['figwheel.client.socket'], ['cljs.core', 'figwheel.client.utils', 'cljs.reader']);
 goog.addDependency("../figwheel/client/heads_up.js", ['figwheel.client.heads_up'], ['goog.dom', 'goog.string', 'cljs.core', 'goog.dom.dataset', 'goog.object', 'cljs.core.async', 'cljs.pprint', 'figwheel.client.socket', 'clojure.string']);
 goog.addDependency("../figwheel/client.js", ['figwheel.client'], ['goog.userAgent.product', 'goog.Uri', 'cljs.core', 'goog.object', 'cljs.core.async', 'figwheel.client.file_reloading', 'figwheel.client.utils', 'cljs.repl', 'figwheel.client.heads_up', 'figwheel.client.socket', 'clojure.string', 'cljs.reader']);
-goog.addDependency("../reagent/interop.js", ['reagent.interop'], ['cljs.core']);
-goog.addDependency("../react.inc.js", ['cljsjs.react'], []);
 goog.addDependency("../reagent/debug.js", ['reagent.debug'], ['cljs.core']);
+goog.addDependency("../socket.io.inc.js", ['cljsjs.socket_io'], []);
+goog.addDependency("../react.inc.js", ['cljsjs.react'], []);
+goog.addDependency("../react-dom.inc.js", ['cljsjs.react.dom'], ['cljsjs.react']);
+goog.addDependency("../reagent/interop.js", ['reagent.interop'], ['cljs.core']);
 goog.addDependency("../reagent/impl/util.js", ['reagent.impl.util'], ['reagent.interop', 'cljs.core', 'cljsjs.react', 'reagent.debug', 'clojure.string']);
 goog.addDependency("../reagent/impl/batching.js", ['reagent.impl.batching'], ['reagent.impl.util', 'reagent.interop', 'cljs.core', 'reagent.debug', 'clojure.string']);
 goog.addDependency("../reagent/ratom.js", ['reagent.ratom'], ['reagent.impl.util', 'cljs.core', 'reagent.impl.batching', 'clojure.set', 'reagent.debug']);
@@ -52,9 +54,7 @@ goog.addDependency("../reagent/impl/component.js", ['reagent.impl.component'], [
 goog.addDependency("../reagent/impl/template.js", ['reagent.impl.template'], ['reagent.impl.util', 'reagent.interop', 'reagent.ratom', 'cljs.core', 'reagent.impl.batching', 'reagent.impl.component', 'reagent.debug', 'clojure.string', 'clojure.walk']);
 goog.addDependency("../react-dom-server.inc.js", ['cljsjs.react.dom.server'], ['cljsjs.react']);
 goog.addDependency("../reagent/dom/server.js", ['reagent.dom.server'], ['reagent.impl.util', 'reagent.interop', 'reagent.ratom', 'cljs.core', 'reagent.impl.template', 'cljsjs.react.dom.server']);
-goog.addDependency("../react-dom.inc.js", ['cljsjs.react.dom'], ['cljsjs.react']);
 goog.addDependency("../reagent/dom.js", ['reagent.dom'], ['reagent.impl.util', 'reagent.interop', 'reagent.ratom', 'cljs.core', 'reagent.impl.template', 'reagent.impl.batching', 'cljsjs.react.dom', 'reagent.debug']);
 goog.addDependency("../reagent/core.js", ['reagent.core'], ['reagent.impl.util', 'reagent.dom.server', 'reagent.interop', 'reagent.ratom', 'cljs.core', 'reagent.impl.template', 'reagent.impl.batching', 'reagent.impl.component', 'reagent.debug', 'reagent.dom']);
-goog.addDependency("../socket.io.inc.js", ['cljsjs.socket_io'], []);
 goog.addDependency("../client/core.js", ['client.core'], ['reagent.core', 'cljs.core', 'cljsjs.socket_io']);
-goog.addDependency("../60FA26F.js", ['figwheel.connect.dev'], ['cljs.core', 'client.core', 'figwheel.client', 'figwheel.client.utils']);
+goog.addDependency("../EAF230C.js", ['figwheel.connect.dev'], ['cljs.core', 'client.core', 'figwheel.client', 'figwheel.client.utils']);

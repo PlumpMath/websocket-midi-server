@@ -51,8 +51,8 @@ var pitch = (midi_bytes[(1)]);
 var velocity = (midi_bytes[(2)]);
 console.log("status",status,"pitch",pitch);
 
-var G__45516 = status;
-switch (G__45516) {
+var G__54234 = status;
+switch (G__54234) {
 case (144):
 if(cljs.core._EQ_.call(null,velocity,(0))){
 console.log("< note off",pitch);
@@ -113,12 +113,20 @@ return null;
 });
 client.core.note_on = (cljs.core.truth_(client.core.LATCHING)?client.core.note_on_latch:client.core.note_on_normal);
 client.core.note_off = (cljs.core.truth_(client.core.LATCHING)?client.core.note_off_latch:client.core.note_off_normal);
+client.core.DEVICES = new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["from Max 1","Logidy UMI3"], null);
 /**
  * Take MIDI from foot switch, send up to server.
  */
 client.core.SATELLITE = (function client$core$SATELLITE(){
 return client.core.when_MIDI.call(null,(function (){
-var temp__4655__auto__ = WebMidi.getInputByName("from Max 1");
+var temp__4655__auto__ = cljs.core.reduce.call(null,(function (result,name){
+var or__44185__auto__ = result;
+if(cljs.core.truth_(or__44185__auto__)){
+return or__44185__auto__;
+} else {
+return WebMidi.getInputByName(name);
+}
+}),null,client.core.DEVICES);
 if(cljs.core.truth_(temp__4655__auto__)){
 var keys = temp__4655__auto__;
 cljs.core.swap_BANG_.call(null,client.core.app_state,cljs.core.assoc,new cljs.core.Keyword(null,"content","content",15833224),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.row","div.row",133678515),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.col-md-12","div.col-md-12",-1894925992),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"h2","h2",-372662728),"OFF"], null)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.row","div.row",133678515),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.col-md-12","div.col-md-12",-1894925992),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"iframe","iframe",884422026),new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"src","src",-1651076051),"http://ipcamlive.com/player/player.php?alias=57c7d74347fa1",new cljs.core.Keyword(null,"width","width",-384071477),"100%",new cljs.core.Keyword(null,"height","height",1025178622),"100%",new cljs.core.Keyword(null,"frameBorder","frameBorder",-1546202685),(0)], null)], null)], null)], null)], null));
@@ -126,22 +134,26 @@ cljs.core.swap_BANG_.call(null,client.core.app_state,cljs.core.assoc,new cljs.co
 client.core.show_latch.call(null,false,(0));
 
 keys.addListener("noteon","all",((function (keys,temp__4655__auto__){
-return (function (p1__45518_SHARP_){
-console.log("noteon",p1__45518_SHARP_);
+return (function (p1__54236_SHARP_){
+console.log("noteon",p1__54236_SHARP_);
 
-return client.core.note_on.call(null,p1__45518_SHARP_.data);
+return client.core.note_on.call(null,p1__54236_SHARP_.data);
 });})(keys,temp__4655__auto__))
 );
 
 return keys.addListener("noteoff","all",((function (keys,temp__4655__auto__){
-return (function (p1__45519_SHARP_){
-console.log("noteoff",p1__45519_SHARP_);
+return (function (p1__54237_SHARP_){
+console.log("noteoff",p1__54237_SHARP_);
 
-return client.core.note_off.call(null,p1__45519_SHARP_.data);
+return client.core.note_off.call(null,p1__54237_SHARP_.data);
 });})(keys,temp__4655__auto__))
 );
 } else {
-return cljs.core.swap_BANG_.call(null,client.core.app_state,cljs.core.assoc,new cljs.core.Keyword(null,"content","content",15833224),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.row","div.row",133678515),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.col-md-12","div.col-md-12",-1894925992),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"h2","h2",-372662728),"Cannot find ","from Max 1"], null)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.row","div.row",133678515),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.col-md-12","div.col-md-12",-1894925992),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"iframe","iframe",884422026),new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"src","src",-1651076051),"http://ipcamlive.com/player/player.php?alias=57c7d74347fa1",new cljs.core.Keyword(null,"width","width",-384071477),"100%",new cljs.core.Keyword(null,"height","height",1025178622),"100%",new cljs.core.Keyword(null,"frameBorder","frameBorder",-1546202685),(0)], null)], null)], null)], null)], null));
+return cljs.core.swap_BANG_.call(null,client.core.app_state,cljs.core.assoc,new cljs.core.Keyword(null,"content","content",15833224),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.row","div.row",133678515),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.col-md-12","div.col-md-12",-1894925992),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"h2","h2",-372662728),"Cannot find device"], null)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.row","div.row",133678515),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.col-md-12","div.col-md-12",-1894925992),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"ul","ul",-1349521403),cljs.core.map_indexed.call(null,((function (temp__4655__auto__){
+return (function (i,t){
+return new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"li","li",723558921),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"key","key",-1516042587),i], null),"Tried: ",t], null);
+});})(temp__4655__auto__))
+,client.core.DEVICES)], null)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.row","div.row",133678515),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.col-md-12","div.col-md-12",-1894925992),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"iframe","iframe",884422026),new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"src","src",-1651076051),"http://ipcamlive.com/player/player.php?alias=57c7d74347fa1",new cljs.core.Keyword(null,"width","width",-384071477),"100%",new cljs.core.Keyword(null,"height","height",1025178622),"100%",new cljs.core.Keyword(null,"frameBorder","frameBorder",-1546202685),(0)], null)], null)], null)], null)], null));
 }
 }));
 });
@@ -166,4 +178,4 @@ client.core.on_js_reload = (function client$core$on_js_reload(){
 return null;
 });
 
-//# sourceMappingURL=core.js.map?rel=1484211955683
+//# sourceMappingURL=core.js.map?rel=1484556546427
