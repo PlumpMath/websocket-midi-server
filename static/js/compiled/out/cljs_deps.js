@@ -57,4 +57,4 @@ goog.addDependency("../reagent/dom/server.js", ['reagent.dom.server'], ['reagent
 goog.addDependency("../reagent/dom.js", ['reagent.dom'], ['reagent.impl.util', 'reagent.interop', 'reagent.ratom', 'cljs.core', 'reagent.impl.template', 'reagent.impl.batching', 'cljsjs.react.dom', 'reagent.debug']);
 goog.addDependency("../reagent/core.js", ['reagent.core'], ['reagent.impl.util', 'reagent.dom.server', 'reagent.interop', 'reagent.ratom', 'cljs.core', 'reagent.impl.template', 'reagent.impl.batching', 'reagent.impl.component', 'reagent.debug', 'reagent.dom']);
 goog.addDependency("../client/core.js", ['client.core'], ['reagent.core', 'cljs.core', 'cljsjs.socket_io']);
-goog.addDependency("../61049F4.js", ['figwheel.connect.dev'], ['cljs.core', 'client.core', 'figwheel.client', 'figwheel.client.utils']);
+goog.addDependency("../40A853E.js", ['figwheel.connect.dev'], ['cljs.core', 'client.core', 'figwheel.client', 'figwheel.client.utils']);
