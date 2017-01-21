@@ -2,8 +2,12 @@
 goog.provide('client.core');
 goog.require('cljs.core');
 goog.require('reagent.core');
+goog.require('alandipert.storage_atom');
 goog.require('cljsjs.socket_io');
 cljs.core.enable_console_print_BANG_.call(null);
+client.core.prefs = alandipert.storage_atom.local_storage.call(null,reagent.core.atom.call(null,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"c","c",-1763192079),(0)], null)),new cljs.core.Keyword(null,"id-prefs","id-prefs",-1068985746));
+cljs.core.swap_BANG_.call(null,client.core.prefs,cljs.core.update,new cljs.core.Keyword(null,"c","c",-1763192079),cljs.core.inc);
+console.log("Checking prefs, seeing ",new cljs.core.Keyword(null,"c","c",-1763192079).cljs$core$IFn$_invoke$arity$1(cljs.core.deref.call(null,client.core.prefs)));
 client.core.HOST = "https://identity-noise.herokuapp.com/";
 client.core.LATCHING = true;
 client.core.SUMMING = true;
@@ -42,14 +46,14 @@ return (total + (n - client.core.PITCH_BASE));
 ,(0),s);
 var out_note = (sum + client.core.PITCH_BASE);
 console.log("Central latched: ",[cljs.core.str(cljs.core.map.call(null,((function (s,sum,out_note){
-return (function (p1__52872_SHARP_){
-return client.core.note_name.call(null,p1__52872_SHARP_);
+return (function (p1__54406_SHARP_){
+return client.core.note_name.call(null,p1__54406_SHARP_);
 });})(s,sum,out_note))
 ,s))].join(''),", putting ",client.core.note_name.call(null,out_note));
 
 cljs.core.swap_BANG_.call(null,client.core.app_state,cljs.core.assoc,new cljs.core.Keyword(null,"content","content",15833224),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.row","div.row",133678515),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.col-md-12","div.col-md-12",-1894925992),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"h2","h2",-372662728),"Latched notes: ",[cljs.core.str(cljs.core.map.call(null,((function (s,sum,out_note){
-return (function (p1__52873_SHARP_){
-return client.core.note_name.call(null,p1__52873_SHARP_);
+return (function (p1__54407_SHARP_){
+return client.core.note_name.call(null,p1__54407_SHARP_);
 });})(s,sum,out_note))
 ,s))].join('')], null)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.row","div.row",133678515),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.col-md-12","div.col-md-12",-1894925992),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"h3","h3",2067611163),"Output note: ",client.core.note_name.call(null,out_note)], null)], null)], null)], null));
 
@@ -103,8 +107,8 @@ var pitch = (midi_bytes[(1)]);
 var velocity = (midi_bytes[(2)]);
 console.log("status",status,"pitch",pitch);
 
-var G__52875 = status;
-switch (G__52875) {
+var G__54409 = status;
+switch (G__54409) {
 case (144):
 if(cljs.core._EQ_.call(null,velocity,(0))){
 return client.core.central_note_off.call(null,output,pitch);
@@ -139,12 +143,12 @@ client.core.show_latch = (function client$core$show_latch(how,pitch){
 return cljs.core.swap_BANG_.call(null,client.core.app_state,cljs.core.assoc_in,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"content","content",15833224),(1)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.row","div.row",133678515),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.col-md-12","div.col-md-12",-1894925992),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"h2","h2",-372662728),(cljs.core.truth_(how)?"ON: ":"OFF: "),client.core.note_name.call(null,pitch)], null)], null)], null));
 });
 client.core.note_on_normal = (function client$core$note_on_normal(midi){
-client.core.socket.emit("to_server",({"midi": midi}));
+client.core.socket.emit("to_server",({"midi": midi, "local-time": Date()}));
 
 return client.core.show_latch.call(null,true,(midi[(1)]));
 });
 client.core.note_off_normal = (function client$core$note_off_normal(midi){
-client.core.socket.emit("to_server",({"midi": midi}));
+client.core.socket.emit("to_server",({"midi": midi, "local-time": Date()}));
 
 return client.core.show_latch.call(null,false,(midi[(1)]));
 });
@@ -155,7 +159,7 @@ var velocity = (midi[(2)]);
 var how = cljs.core.get_in.call(null,cljs.core.swap_BANG_.call(null,client.core.app_state,cljs.core.update_in,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"satellite-state","satellite-state",1177073889),new cljs.core.Keyword(null,"latch","latch",728809382)], null),cljs.core.not),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"satellite-state","satellite-state",1177073889),new cljs.core.Keyword(null,"latch","latch",728809382)], null));
 console.log("latch data",cljs.core.clj__GT_js.call(null,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [status,pitch,(cljs.core.truth_(how)?velocity:(0))], null)));
 
-client.core.socket.emit("to_server",cljs.core.clj__GT_js.call(null,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"midi","midi",1256960668),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [status,pitch,(cljs.core.truth_(how)?velocity:(0))], null)], null)));
+client.core.socket.emit("to_server",cljs.core.clj__GT_js.call(null,new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"midi","midi",1256960668),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [status,pitch,(cljs.core.truth_(how)?velocity:(0))], null),new cljs.core.Keyword(null,"local-time","local-time",-1873195290),Date()], null)));
 
 return client.core.show_latch.call(null,how,pitch);
 });
@@ -185,18 +189,18 @@ cljs.core.swap_BANG_.call(null,client.core.app_state,cljs.core.assoc,new cljs.co
 client.core.show_latch.call(null,false,(0));
 
 keys.addListener("noteon","all",((function (keys,temp__4655__auto__){
-return (function (p1__52877_SHARP_){
-console.log("noteon",p1__52877_SHARP_);
+return (function (p1__54411_SHARP_){
+console.log("noteon",p1__54411_SHARP_);
 
-return client.core.note_on.call(null,p1__52877_SHARP_.data);
+return client.core.note_on.call(null,p1__54411_SHARP_.data);
 });})(keys,temp__4655__auto__))
 );
 
 return keys.addListener("noteoff","all",((function (keys,temp__4655__auto__){
-return (function (p1__52878_SHARP_){
-console.log("noteoff",p1__52878_SHARP_);
+return (function (p1__54412_SHARP_){
+console.log("noteoff",p1__54412_SHARP_);
 
-return client.core.note_off.call(null,p1__52878_SHARP_.data);
+return client.core.note_off.call(null,p1__54412_SHARP_.data);
 });})(keys,temp__4655__auto__))
 );
 } else {
@@ -229,4 +233,4 @@ client.core.on_js_reload = (function client$core$on_js_reload(){
 return null;
 });
 
-//# sourceMappingURL=core.js.map?rel=1484736411865
+//# sourceMappingURL=core.js.map?rel=1484994820562
