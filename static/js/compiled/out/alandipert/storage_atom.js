@@ -23,14 +23,14 @@ alandipert.storage_atom._get = (function alandipert$storage_atom$_get(this$,not_
 if((!((this$ == null))) && (!((this$.alandipert$storage_atom$IStorageBackend$_get$arity$2 == null)))){
 return this$.alandipert$storage_atom$IStorageBackend$_get$arity$2(this$,not_found);
 } else {
-var x__44848__auto__ = (((this$ == null))?null:this$);
-var m__44849__auto__ = (alandipert.storage_atom._get[goog.typeOf(x__44848__auto__)]);
-if(!((m__44849__auto__ == null))){
-return m__44849__auto__.call(null,this$,not_found);
+var x__25714__auto__ = (((this$ == null))?null:this$);
+var m__25715__auto__ = (alandipert.storage_atom._get[goog.typeOf(x__25714__auto__)]);
+if(!((m__25715__auto__ == null))){
+return m__25715__auto__.call(null,this$,not_found);
 } else {
-var m__44849__auto____$1 = (alandipert.storage_atom._get["_"]);
-if(!((m__44849__auto____$1 == null))){
-return m__44849__auto____$1.call(null,this$,not_found);
+var m__25715__auto____$1 = (alandipert.storage_atom._get["_"]);
+if(!((m__25715__auto____$1 == null))){
+return m__25715__auto____$1.call(null,this$,not_found);
 } else {
 throw cljs.core.missing_protocol.call(null,"IStorageBackend.-get",this$);
 }
@@ -45,14 +45,14 @@ alandipert.storage_atom._commit_BANG_ = (function alandipert$storage_atom$_commi
 if((!((this$ == null))) && (!((this$.alandipert$storage_atom$IStorageBackend$_commit_BANG_$arity$2 == null)))){
 return this$.alandipert$storage_atom$IStorageBackend$_commit_BANG_$arity$2(this$,value);
 } else {
-var x__44848__auto__ = (((this$ == null))?null:this$);
-var m__44849__auto__ = (alandipert.storage_atom._commit_BANG_[goog.typeOf(x__44848__auto__)]);
-if(!((m__44849__auto__ == null))){
-return m__44849__auto__.call(null,this$,value);
+var x__25714__auto__ = (((this$ == null))?null:this$);
+var m__25715__auto__ = (alandipert.storage_atom._commit_BANG_[goog.typeOf(x__25714__auto__)]);
+if(!((m__25715__auto__ == null))){
+return m__25715__auto__.call(null,this$,value);
 } else {
-var m__44849__auto____$1 = (alandipert.storage_atom._commit_BANG_["_"]);
-if(!((m__44849__auto____$1 == null))){
-return m__44849__auto____$1.call(null,this$,value);
+var m__25715__auto____$1 = (alandipert.storage_atom._commit_BANG_["_"]);
+if(!((m__25715__auto____$1 == null))){
+return m__25715__auto____$1.call(null,this$,value);
 } else {
 throw cljs.core.missing_protocol.call(null,"IStorageBackend.-commit!",this$);
 }
@@ -97,8 +97,8 @@ alandipert.storage_atom.StorageBackend.cljs$lang$type = true;
 
 alandipert.storage_atom.StorageBackend.cljs$lang$ctorStr = "alandipert.storage-atom/StorageBackend";
 
-alandipert.storage_atom.StorageBackend.cljs$lang$ctorPrWriter = (function (this__44791__auto__,writer__44792__auto__,opt__44793__auto__){
-return cljs.core._write.call(null,writer__44792__auto__,"alandipert.storage-atom/StorageBackend");
+alandipert.storage_atom.StorageBackend.cljs$lang$ctorPrWriter = (function (this__25657__auto__,writer__25658__auto__,opt__25659__auto__){
+return cljs.core._write.call(null,writer__25658__auto__,"alandipert.storage-atom/StorageBackend");
 });
 
 alandipert.storage_atom.__GT_StorageBackend = (function alandipert$storage_atom$__GT_StorageBackend(store,key){
@@ -140,23 +140,23 @@ alandipert.storage_atom._commit_BANG_.call(null,backend,cljs.core.deref.call(nul
 cljs.core.reset_BANG_.call(null,atom,existing);
 }
 
-var G__54318 = atom;
-cljs.core.add_watch.call(null,G__54318,new cljs.core.Keyword("alandipert.storage-atom","storage-watch","alandipert.storage-atom/storage-watch",1159565749),((function (G__54318,existing,debounce){
-return (function (p1__54315_SHARP_,p2__54316_SHARP_,p3__54313_SHARP_,p4__54314_SHARP_){
-if(cljs.core.truth_((function (){var and__44173__auto__ = alandipert.storage_atom._STAR_watch_active_STAR_;
-if(cljs.core.truth_(and__44173__auto__)){
-return cljs.core.not_EQ_.call(null,p3__54313_SHARP_,p4__54314_SHARP_);
+var G__27032 = atom;
+cljs.core.add_watch.call(null,G__27032,new cljs.core.Keyword("alandipert.storage-atom","storage-watch","alandipert.storage-atom/storage-watch",1159565749),((function (G__27032,existing,debounce){
+return (function (p1__27029_SHARP_,p2__27030_SHARP_,p3__27027_SHARP_,p4__27028_SHARP_){
+if(cljs.core.truth_((function (){var and__25039__auto__ = alandipert.storage_atom._STAR_watch_active_STAR_;
+if(cljs.core.truth_(and__25039__auto__)){
+return cljs.core.not_EQ_.call(null,p3__27027_SHARP_,p4__27028_SHARP_);
 } else {
-return and__44173__auto__;
+return and__25039__auto__;
 }
 })())){
-return debounce.call(null,((function (G__54318,existing,debounce){
+return debounce.call(null,((function (G__27032,existing,debounce){
 return (function (){
-return alandipert.storage_atom._commit_BANG_.call(null,backend,p4__54314_SHARP_);
-});})(G__54318,existing,debounce))
-,(function (){var or__44185__auto__ = alandipert.storage_atom._STAR_storage_delay_STAR_;
-if(cljs.core.truth_(or__44185__auto__)){
-return or__44185__auto__;
+return alandipert.storage_atom._commit_BANG_.call(null,backend,p4__27028_SHARP_);
+});})(G__27032,existing,debounce))
+,(function (){var or__25051__auto__ = alandipert.storage_atom._STAR_storage_delay_STAR_;
+if(cljs.core.truth_(or__25051__auto__)){
+return or__25051__auto__;
 } else {
 return cljs.core.deref.call(null,alandipert.storage_atom.storage_delay);
 }
@@ -164,25 +164,25 @@ return cljs.core.deref.call(null,alandipert.storage_atom.storage_delay);
 } else {
 return null;
 }
-});})(G__54318,existing,debounce))
+});})(G__27032,existing,debounce))
 );
 
-return G__54318;
+return G__27032;
 });
 alandipert.storage_atom.maybe_update_backend = (function alandipert$storage_atom$maybe_update_backend(atom,storage,k,default$,e){
 if((storage === e.storageArea)){
 if(cljs.core.empty_QMARK_.call(null,e.key)){
-var _STAR_watch_active_STAR_54322 = alandipert.storage_atom._STAR_watch_active_STAR_;
+var _STAR_watch_active_STAR_27036 = alandipert.storage_atom._STAR_watch_active_STAR_;
 alandipert.storage_atom._STAR_watch_active_STAR_ = false;
 
 try{return cljs.core.reset_BANG_.call(null,atom,default$);
-}finally {alandipert.storage_atom._STAR_watch_active_STAR_ = _STAR_watch_active_STAR_54322;
+}finally {alandipert.storage_atom._STAR_watch_active_STAR_ = _STAR_watch_active_STAR_27036;
 }} else {
 try{var temp__4657__auto__ = alandipert.storage_atom.json__GT_clj.call(null,e.key);
 if(cljs.core.truth_(temp__4657__auto__)){
 var sk = temp__4657__auto__;
 if(cljs.core._EQ_.call(null,sk,k)){
-var _STAR_watch_active_STAR_54324 = alandipert.storage_atom._STAR_watch_active_STAR_;
+var _STAR_watch_active_STAR_27038 = alandipert.storage_atom._STAR_watch_active_STAR_;
 alandipert.storage_atom._STAR_watch_active_STAR_ = false;
 
 try{return cljs.core.reset_BANG_.call(null,atom,(function (){var value = e.newValue;
@@ -192,14 +192,14 @@ return alandipert.storage_atom.json__GT_clj.call(null,value);
 return default$;
 }
 })());
-}finally {alandipert.storage_atom._STAR_watch_active_STAR_ = _STAR_watch_active_STAR_54324;
+}finally {alandipert.storage_atom._STAR_watch_active_STAR_ = _STAR_watch_active_STAR_27038;
 }} else {
 return null;
 }
 } else {
 return null;
 }
-}catch (e54323){var e__$1 = e54323;
+}catch (e27037){var e__$1 = e27037;
 return null;
 }}
 } else {
@@ -209,8 +209,8 @@ return null;
 alandipert.storage_atom.link_storage = (function alandipert$storage_atom$link_storage(atom,storage,k){
 var default$ = cljs.core.deref.call(null,atom);
 return window.addEventListener("storage",((function (default$){
-return (function (p1__54325_SHARP_){
-return alandipert.storage_atom.maybe_update_backend.call(null,atom,storage,k,default$,p1__54325_SHARP_);
+return (function (p1__27039_SHARP_){
+return alandipert.storage_atom.maybe_update_backend.call(null,atom,storage,k,default$,p1__27039_SHARP_);
 });})(default$))
 );
 });
@@ -278,4 +278,4 @@ alandipert.storage_atom.remove_session_storage_BANG_ = (function alandipert$stor
 return alandipert.storage_atom.remove_html_storage_BANG_.call(null,sessionStorage,k);
 });
 
-//# sourceMappingURL=storage_atom.js.map?rel=1484992966016
+//# sourceMappingURL=storage_atom.js.map?rel=1485036130753
