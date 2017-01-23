@@ -278,4 +278,4 @@ alandipert.storage_atom.remove_session_storage_BANG_ = (function alandipert$stor
 return alandipert.storage_atom.remove_html_storage_BANG_.call(null,sessionStorage,k);
 });
 
-//# sourceMappingURL=storage_atom.js.map?rel=1485036130753
+//# sourceMappingURL=storage_atom.js.map?rel=1485162145621

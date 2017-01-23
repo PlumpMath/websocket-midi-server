@@ -11,7 +11,7 @@ client.core.SUMMING = true;
 client.core.PITCH_BASE = (36);
 if(typeof client.core.app_state !== 'undefined'){
 } else {
-client.core.app_state = reagent.core.atom.call(null,new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"content","content",15833224),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.row","div.row",133678515),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.col-md-12","div.col-md-12",-1894925992),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"h2","h2",-372662728),"Ready"], null)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.row","div.row",133678515),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.col-md-12","div.col-md-12",-1894925992)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.row","div.row",133678515),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.col-md-12","div.col-md-12",-1894925992)], null)], null)], null),new cljs.core.Keyword(null,"satellite-state","satellite-state",1177073889),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"latch","latch",728809382),false], null),new cljs.core.Keyword(null,"central-state","central-state",-316114828),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"latched-set","latched-set",2024851586),cljs.core.PersistentHashSet.EMPTY], null)], null));
+client.core.app_state = reagent.core.atom.call(null,new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"content","content",15833224),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.row","div.row",133678515),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.col-md-12","div.col-md-12",-1894925992),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"h2","h2",-372662728),"Starting"], null)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.row","div.row",133678515),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.col-md-12","div.col-md-12",-1894925992)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.row","div.row",133678515),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.col-md-12","div.col-md-12",-1894925992)], null)], null)], null),new cljs.core.Keyword(null,"satellite-state","satellite-state",1177073889),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"latch","latch",728809382),false], null),new cljs.core.Keyword(null,"central-state","central-state",-316114828),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"latched-set","latched-set",2024851586),cljs.core.PersistentHashSet.EMPTY], null)], null));
 }
 client.core.set_row = (function client$core$set_row(i,html){
 return cljs.core.swap_BANG_.call(null,client.core.app_state,cljs.core.assoc_in,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"content","content",15833224),(i + (1))], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.row","div.row",133678515),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.col-md-12","div.col-md-12",-1894925992),html], null)], null));
@@ -146,7 +146,7 @@ return cljs.core.swap_BANG_.call(null,client.core.prefs,cljs.core.update,new clj
 return dev.stopNote(pitch,(1));
 }
 });
-client.core.INSTRUMENTS = new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["to Max 1","USB Midi Dark Energy"], null);
+client.core.INSTRUMENTS = new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["to Max","Dark"], null);
 /**
  * Respond to MIDI coming in from the server, send to modular.
  */
@@ -242,7 +242,7 @@ return null;
 });
 client.core.note_on = (cljs.core.truth_(client.core.LATCHING)?client.core.note_on_latch:client.core.note_on_normal);
 client.core.note_off = (cljs.core.truth_(client.core.LATCHING)?client.core.note_off_latch:client.core.note_off_normal);
-client.core.CONTROLLERS = new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["from Max 1","Logidy UMI3"], null);
+client.core.CONTROLLERS = new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["from Max","Logidy"], null);
 /**
  * Take MIDI from foot switch, send up to server.
  */
@@ -315,4 +315,4 @@ client.core.on_js_reload = (function client$core$on_js_reload(){
 return null;
 });
 
-//# sourceMappingURL=core.js.map?rel=1485036130841
+//# sourceMappingURL=core.js.map?rel=1485162145704
