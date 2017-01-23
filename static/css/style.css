@@ -3,3 +3,9 @@
 div.container {
     margin-top: 50px;
 }
+
+div.cam {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
