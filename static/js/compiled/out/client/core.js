@@ -122,7 +122,7 @@ return client.core.note_name.call(null,p1__27068_SHARP_);
 
 client.core.set_row.call(null,(1),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"h3","h3",2067611163),"Output note: ",client.core.note_name.call(null,out_note)], null));
 
-return dev.playNote(out_note,(1));
+return dev.playNote(out_note,(1),({"duration": (100), "velocity": 0.5}));
 });
 client.core.central_note_on = (function client$core$central_note_on(dev,pitch,t){
 console.log("< note on",pitch,"at",t);
@@ -315,4 +315,4 @@ client.core.on_js_reload = (function client$core$on_js_reload(){
 return null;
 });
 
-//# sourceMappingURL=core.js.map?rel=1485162145704
+//# sourceMappingURL=core.js.map?rel=1485216600342

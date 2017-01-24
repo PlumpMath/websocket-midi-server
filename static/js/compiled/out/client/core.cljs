@@ -87,7 +87,7 @@
     (js/console.log "Central latched: " (str (map #(note-name %) s)) ", putting " (note-name out-note))
     (set-row 0 [:h2 "Latched notes: " (str (map #(note-name %) s))])
     (set-row 1 [:h3 "Output note: " (note-name out-note)])
-    (.playNote dev out-note 1)))
+    (.playNote dev out-note 1 #js {:duration 100 :velocity 0.5})))
 
 (defn central-note-on [dev pitch t]
   (js/console.log "< note on" pitch "at" t)

@@ -799,4 +799,4 @@ reagent.core.component_path = (function reagent$core$component_path(c){
 return reagent.impl.component.component_path.call(null,c);
 });
 
-//# sourceMappingURL=core.js.map?rel=1485162145342
+//# sourceMappingURL=core.js.map?rel=1485216599559
