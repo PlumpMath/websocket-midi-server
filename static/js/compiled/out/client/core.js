@@ -124,13 +124,18 @@ client.core.set_row.call(null,(1),new cljs.core.PersistentVector(null, 3, 5, clj
 
 return dev.playNote(out_note,(1),({"duration": (100), "velocity": 0.5}));
 });
+client.core.append_msg = (function client$core$append_msg(log,msg){
+var X = log;
+var X__$1 = cljs.core.conj.call(null,X,msg);
+return cljs.core.take.call(null,(1000),X__$1);
+});
 client.core.central_note_on = (function client$core$central_note_on(dev,pitch,t){
 console.log("< note on",pitch,"at",t);
 
 if(cljs.core.truth_(client.core.SUMMING)){
 client.core.put_latched_total.call(null,dev,cljs.core.swap_BANG_.call(null,client.core.app_state,cljs.core.update_in,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"central-state","central-state",-316114828),new cljs.core.Keyword(null,"latched-set","latched-set",2024851586)], null),cljs.core.conj,pitch));
 
-return cljs.core.swap_BANG_.call(null,client.core.prefs,cljs.core.update,new cljs.core.Keyword(null,"incoming","incoming",-1710131427),cljs.core.conj,new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"msg","msg",-1386103444),new cljs.core.Keyword(null,"on","on",173873944),new cljs.core.Keyword(null,"pitch","pitch",1495126700),client.core.note_name.call(null,pitch),new cljs.core.Keyword(null,"local-time","local-time",-1873195290),t], null));
+return cljs.core.swap_BANG_.call(null,client.core.prefs,cljs.core.update,new cljs.core.Keyword(null,"incoming","incoming",-1710131427),client.core.append_msg,new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"msg","msg",-1386103444),new cljs.core.Keyword(null,"on","on",173873944),new cljs.core.Keyword(null,"pitch","pitch",1495126700),client.core.note_name.call(null,pitch),new cljs.core.Keyword(null,"local-time","local-time",-1873195290),t], null));
 } else {
 return dev.playNote(pitch,(1));
 }
@@ -141,7 +146,7 @@ console.log("< note off",pitch,"at",t);
 if(cljs.core.truth_(client.core.SUMMING)){
 client.core.put_latched_total.call(null,dev,cljs.core.swap_BANG_.call(null,client.core.app_state,cljs.core.update_in,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"central-state","central-state",-316114828),new cljs.core.Keyword(null,"latched-set","latched-set",2024851586)], null),cljs.core.disj,pitch));
 
-return cljs.core.swap_BANG_.call(null,client.core.prefs,cljs.core.update,new cljs.core.Keyword(null,"incoming","incoming",-1710131427),cljs.core.conj,new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"msg","msg",-1386103444),new cljs.core.Keyword(null,"off","off",606440789),new cljs.core.Keyword(null,"pitch","pitch",1495126700),client.core.note_name.call(null,pitch),new cljs.core.Keyword(null,"local-time","local-time",-1873195290),t], null));
+return cljs.core.swap_BANG_.call(null,client.core.prefs,cljs.core.update,new cljs.core.Keyword(null,"incoming","incoming",-1710131427),client.core.append_msg,new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"msg","msg",-1386103444),new cljs.core.Keyword(null,"off","off",606440789),new cljs.core.Keyword(null,"pitch","pitch",1495126700),client.core.note_name.call(null,pitch),new cljs.core.Keyword(null,"local-time","local-time",-1873195290),t], null));
 } else {
 return dev.stopNote(pitch,(1));
 }
@@ -315,4 +320,4 @@ client.core.on_js_reload = (function client$core$on_js_reload(){
 return null;
 });
 
-//# sourceMappingURL=core.js.map?rel=1485216600342
+//# sourceMappingURL=core.js.map?rel=1485247304409
